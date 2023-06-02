@@ -1,0 +1,35 @@
+<form #value="ngForm" (submit)="onSubmit(value)">
+    <div class="container col-md-6">
+        <h3>
+            Login Form
+        </h3>
+        <div class="value-box">
+            <div class="single-value" >
+                <label for="">User Name</label>
+                <input type="text" name="username" id="" minlength="3" maxlength="12" [(ngModel)]="users.username" required />
+                <div class="error-msg" *ngIf="value.form.controls['username']?.errors">{{value.form.controls['username']?.errors | json}}</div>
+            </div>
+            <div class="single-value">
+                <label for="email">E Mail</label>
+                <input type="email" name="email" id="" [(ngModel)]="users.email" required />
+                <div *ngIf="value.form.controls['email']?.errors" class="error-msg">{{value.form.controls['email']?.errors | json}}</div>
+            </div>
+            <div class="single-value">
+                <label for="">Password</label>
+                <input type="password" name="password" id="" [(ngModel)]="users.password" required />
+                <div class="error-msg" *ngIf="value.form.controls['password']?.errors ">{{value.form.controls['password']?.errors | json}}</div>
+            </div>
+        </div>
+    
+        <button  type="submit" class="btn btn-primary button1"
+        [disabled]="value.invalid">Submit</button>
+        <br><br><br>
+        <div class="answer">
+            Form valid: {{value.valid}}
+        <br>
+        {{users | json}}
+        </div>
+    
+    </div>
+</form>
+

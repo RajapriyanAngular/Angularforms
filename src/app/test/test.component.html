@@ -1,0 +1,59 @@
+<form #value="ngForm" (submit)="onSubmit(value)">
+    <div class="container col-md-6">
+        <h3>
+            Login Form
+        </h3>
+        <div class="value-box">
+            <div class="single-value">
+                <label for="">User Name</label>
+                <input type="text" name="name" id="uname" ngModel  minlength="4" maxlength="20" [(ngModel)]="data.uname" #name="ngModel" required />
+                <div *ngIf="name.invalid &&(name.dirty || name.touched)" class="alert-noti">
+                <div *ngIf="name.errors?.['required']">Name is required</div>
+                <div *ngIf="name.errors?.['minlength']">
+                    Name has minimum 4 characters required
+                </div>
+                <div *ngIf="name.errors?.['maxlength']">
+                  Name has minimum 15 characters required
+                </div>
+            </div>
+            </div>
+
+            <div class="single-value">
+                <label for="">E Mail</label>
+                <input type="email" name="email" #email="ngModel" ngModel [(ngModel)]="data.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required />
+                <div *ngIf="email.invalid &&(email.dirty || email.touched)"class="alert-noti">
+                <div *ngIf="email.errors?.['required']">Email is a required field!</div>
+                <div *ngIf="email.errors?.['pattern']">This is not a valid Email!!!</div>
+             </div>
+            </div>
+
+            <div class="single-value">
+                <label for="">Mobile Number</label>
+                <input type="number" name="phone" #phone="ngModel" [(ngModel)]="data.mobile" ngModel pattern="[7-9]{1}[0-9]{9}" required />
+                <div *ngIf="phone.invalid &&(phone.dirty || phone.touched)" class="alert-noti">
+                <div *ngIf="phone.errors?.['required']">Number is a required </div>
+                <div *ngIf="phone.errors?.['pattern']">This is not a valid number!!!</div>
+                </div> 
+            </div>
+
+            <div class="single-value">
+                <label for="">Id No.</label>
+                <input type="number" name="id" #id="ngModel" [(ngModel)]="data.id" ngModel min="2" max="14" required />
+                <div *ngIf="id.invalid &&(id.dirty || id.touched)" class="alert-noti">
+                <div *ngIf="id.errors?.['required']">Id is a required </div>
+                <div *ngIf="id.errors?.['min']">ID not less than 2</div>
+                <div *ngIf="id.errors?.['max']">ID not more than 15</div>
+                </div>
+            </div>
+
+            <div class="single-value">
+                <label for="">test</label>
+                <input type="text" name="test" #test="ngModel" [(ngModel)]="data.test" ngModel pattern="[0-9]{1,2}" required />
+                <div *ngIf="test.errors?.['pattern']">Enter a number number!!!</div>
+            </div>
+
+        </div>
+        <button  type="submit" class="btn btn-primary button1"
+        [disabled]="value.invalid">Submit</button>
+    </div>
+</form>
